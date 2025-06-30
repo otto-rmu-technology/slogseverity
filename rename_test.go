@@ -25,12 +25,44 @@ func TestReplaceAttr(t *testing.T) {
 		want slog.Attr
 	}{
 		{
-			name: "LevelKey",
+			name: "LevelKeyDebug",
 			args: args{
 				groups: []string{},
 				a:      slog.Any(slog.LevelKey, slog.LevelDebug),
 			},
-			want: slog.Any("severity", slog.LevelDebug),
+			want: slog.String("severity", "DEBUG"),
+		},
+		{
+			name: "LevelKeyInfo",
+			args: args{
+				groups: []string{},
+				a:      slog.Any(slog.LevelKey, slog.LevelInfo),
+			},
+			want: slog.String("severity", "INFO"),
+		},
+		{
+			name: "LevelKeyWarn",
+			args: args{
+				groups: []string{},
+				a:      slog.Any(slog.LevelKey, slog.LevelWarn),
+			},
+			want: slog.String("severity", "WARNING"),
+		},
+		{
+			name: "LevelKeyError",
+			args: args{
+				groups: []string{},
+				a:      slog.Any(slog.LevelKey, slog.LevelError),
+			},
+			want: slog.String("severity", "ERROR"),
+		},
+		{
+			name: "LevelKeyTrace",
+			args: args{
+				groups: []string{},
+				a:      slog.Any(slog.LevelKey, slog.Level(-5)),
+			},
+			want: slog.String("severity", "TRACE"),
 		},
 		{
 			name: "MessageKey",
